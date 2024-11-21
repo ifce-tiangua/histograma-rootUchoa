@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 void imprime_histograma(int* vendas[], int num_categorias);
 
 int main() {
@@ -8,16 +9,21 @@ int main() {
 
     scanf("%d", &num_categorias);
 
+    if (num_categorias <= 0) {
+        return 0; 
+    }
+
+
     int* vendas[num_categorias];
 
     for (int i = 0; i < num_categorias; i++) {
-        vendas[i] = (int*)malloc(sizeof(int));
+        vendas[i] = (int*)malloc(sizeof(int)); 
         if (vendas[i] == NULL) {
             printf("Erro de alocação de memória.\n");
             exit(1);
         }
 
-        i+1;
+        printf("Digite a quantidade vendida da categoria %d: ", i + 1);
         scanf("%d", vendas[i]); // Lê o valor diretamente para o espaço alocado
     }
 
@@ -31,6 +37,10 @@ int main() {
 }
 
 void imprime_histograma(int* vendas[], int num_categorias) {
+    if (num_categorias <= 0)  {
+        return;
+    }
+
     for (int i = 0; i < num_categorias; i++) {
         printf("%d ", *vendas[i]);
 
